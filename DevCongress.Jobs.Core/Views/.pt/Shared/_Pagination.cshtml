@@ -1,0 +1,27 @@
+@model _PaginationViewModel
+
+@{
+  var query = Context.Request.Query;
+}
+
+<div class="row">
+  <div class="col-sm-5">
+    <div class="dataTables_info" role="status" aria-live="polite">Showing @(Model.TotalCount > 0 ? (((Model.Page - 1) * Model.Limit) + 1) : 0) to @(Model.Page == Model.TotalPageCount ? Model.TotalCount : Model.Page * Model.Count)  of @Model.TotalCount items</div>
+  </div>
+  <div class="col-sm-7">
+    <div class="dataTables_paginate paging_full_numbers">
+      <ul class="pagination">
+        <li class="paginate_button first @(Model.Page == 1 ? "disabled" : "")"><a href="@query.Merge(("Page", 1))" tabindex="0">First</a></li>
+        <li class="paginate_button previous @(Model.Page == 1 ? "disabled" : "")"><a href="@query.Merge(("Page", Math.Max(Model.Page - 1, 1)))" tabindex="0">Previous</a></li>
+
+        @foreach (var pageNum in Enumerable.Range(Model.Page - 2, 5).Where(n => n >= 1 && n <= Model.TotalPageCount))
+        {
+          <li class="paginate_button @(Model.Page == pageNum ? "active" : "")"><a href="@query.Merge(("Page", pageNum))" tabindex="0">@pageNum</a></li>
+        }
+
+        <li class="paginate_button next @(Model.Page == Model.TotalPageCount ? "disabled" : "")"><a href="@query.Merge(("Page", Math.Min(Model.Page + 1, Model.TotalPageCount)))" tabindex="0">Next</a></li>
+        <li class="paginate_button last @(Model.Page == Model.TotalPageCount ? "disabled" : "")"><a href="@query.Merge(("Page", Model.TotalPageCount))" tabindex="0">Last</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

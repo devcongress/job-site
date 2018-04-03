@@ -1,0 +1,187 @@
+@model DevCongress.Jobs.Core.ViewModels.Roles.ListRolesViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "View Roles";
+
+  var query = Context.Request.Query;
+}
+
+<!---->
+
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    @if (Model.IsSuccess)
+    {
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-icon" data-background-color="rose">
+              <i class="material-icons">supervisor_account</i>
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Roles</h4>
+              <div class="toolbar text-right">
+                @if (CurrentUser.HasPermissions("role.add"))
+                {
+                  <a asp-route="add_role" class="btn btn-info">
+                    <i class="material-icons">add</i> new role
+                    <div class="ripple-container"></div>
+                  </a>
+                }
+              </div>
+              <div class="dataTables_wrapper">
+                <form id="listFiltersForm" action="" method="get">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="dataTables_length">
+                        <label class="form-group form-group-sm">
+                          Show
+                          <select name="Limit" class="form-control" onchange="document.getElementById('listFiltersForm').submit();">
+                            <option value="10" selected="@(Model.Limit == 10)">10</option>
+                            <option value="25" selected="@(Model.Limit == 25)">25</option>
+                            <option value="50" selected="@(Model.Limit == 50)">50</option>
+                            <option value="0" selected="@(Model.Limit == 0)">All</option>
+                          </select> roles
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="dataTables_length text-right">
+
+                        <div class="btn-group">
+                          @if (Model.IncludeTrashed)
+                          {
+                            <a href="@query.Merge(("IncludeTrashed", false))" class="btn btn-primary" title="Exclude Trashed">
+                              <i class="material-icons">delete_forever</i>
+                              <div class="ripple-container"></div>
+                            </a>
+                          }
+                          else
+                          {
+                            <a href="@query.Merge(("IncludeTrashed", true))" class="btn btn-primary" title="Include Trashed">
+                              <i class="material-icons">delete</i>
+                              <div class="ripple-container"></div>
+                            </a>
+                          }
+
+                          <button type="submit" class="btn btn-primary" title="Refresh">
+                            <i class="material-icons">refresh</i>
+                            <div class="ripple-container"></div>
+                          </button>
+                          <input type="hidden" name="Page" value="@Model.Page" />
+                          <input type="hidden" name="IncludeTrashed" value="@Convert.ToString(Model.IncludeTrashed)" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th class="text-center">#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Is Active</th>
+
+                            <th class="text-right">Created At</th>
+                            <th class="text-right">Created By</th>
+                            @if (Model.IncludeTrashed)
+                            {
+                              <th class="text-right">Deleted At</th>
+                              <th class="text-right">Deleted By</th>
+                            }
+                            <th class="text-right">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach (var role in Model.Roles)
+                          {
+                            <tr>
+                              <td class="text-center">@role.Id</td>
+                              <td>@role.Name</td>
+                              <td>@role.Description</td>
+                              <td>@role.IsActive</td>
+
+                              <td class="text-right">@role.CreatedAt</td>
+                              <td class="text-right">
+                                <a asp-route="view_user" asp-route-id="@role.CreatedBy">@role.CreatedBy</a>
+                              </td>
+                              @if (Model.IncludeTrashed)
+                              {
+                                <td class="text-right">@role.DeletedAt</td>
+                                <td class="text-right">
+                                  @if (role.DeletedBy != null)
+                                  {
+                                    <a asp-route="view_user" asp-route-id="@role.DeletedBy">@role.DeletedBy</a>
+                                  }
+                                </td>
+                              }
+                              <td class="td-actions text-right">
+                                @if (CurrentUser.HasPermissions("role.fetch"))
+                                {
+                                  <a asp-route="view_role" asp-route-id="@role.Id" class="btn btn-info btn-simple">
+                                    <i class="material-icons">launch</i>
+                                  </a>
+                                }
+                                @if (role.DeletedAt is null)
+                                {
+                                  if (CurrentUser.HasPermissions("role.update"))
+                                  {
+                                    <a asp-route="edit_role" asp-route-id="@role.Id" class="btn btn-warning btn-simple">
+                                      <i class="material-icons">edit</i>
+                                    </a>
+                                  }
+                                  if (CurrentUser.HasPermissions("role.trash"))
+                                  {
+                                    <form method="post" asp-route="trash_role" asp-route-id="@role.Id" style="display: inline;">
+                                      <button type="submit" class="btn btn-danger btn-simple" title="Delete" onclick="confirm('Are you sure you want to trash this role?');">
+                                        <i class="material-icons">delete</i>
+                                      </button>
+                                      <input name="ReturnQuery" value="@query.Merge()" type="hidden" />
+                                    </form>
+                                  }
+                                }
+                                else
+                                {
+                                  if (CurrentUser.HasPermissions("role.restore"))
+                                  {
+                                    <form method="post" asp-route="restore_role" asp-route-id="@role.Id" style="display: inline;">
+                                      <button type="submit" class="btn btn-success btn-simple" title="Restore" onclick="confirm('Are you sure you want to restore this role?');">
+                                        <i class="material-icons">redo</i>
+                                      </button>
+                                      <input name="ReturnQuery" value="@query.Merge()" type="hidden" />
+                                    </form>
+                                  }
+                                }
+                              </td>
+                            </tr>
+                          }
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                @await Html.PartialAsync("_Pagination", new _PaginationViewModel()
+                {
+                  Page = Model.Page,
+                  TotalPageCount = Model.TotalPageCount,
+                  Count = Model.Roles.Length,
+                  TotalCount = Model.TotalCount,
+                  Limit = Model.Limit,
+                })
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

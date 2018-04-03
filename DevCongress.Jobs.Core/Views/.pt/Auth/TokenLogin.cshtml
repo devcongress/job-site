@@ -1,0 +1,54 @@
+@model DevCongress.Jobs.Core.ViewModels.Auth.TokenLoginViewModel
+
+@{
+  Layout = "_MainLayout";
+  ViewData["Title"] = "Login";
+}
+
+<div class="content">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+
+        <form method="post" asp-route="init_token_login">
+          <div class="card card-login card-hidden">
+            <div class="card-header text-center" data-background-color="rose">
+              <h4 class="card-title">Login</h4>
+            </div>
+            <div class="card-content">
+
+              @await Html.PartialAsync("_Messages")
+
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <i class="material-icons">mail_outline</i>
+                </span>
+                <div class="form-group label-floating">
+                  <label class="control-label">Email Address</label>
+                  <input name="EmailAddress" type="email" value="@Model.Email" class="form-control" required="required">
+                </div>
+              </div>
+
+              <!--<div>
+                <div class="checkbox form-horizontal-checkbox">
+                  <label title="Remember login for one week">
+                    <input type="checkbox" name="Remember" value="true" checked="@Model.Remember"> Remember Me
+                  </label>
+                </div>
+              </div>-->
+            </div>
+            <div class="footer text-center">
+              <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Submit</button>
+              <br />
+              <a asp-route="register" class="small text-success">
+                <div class="ripple-container"></div>
+                New User?
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

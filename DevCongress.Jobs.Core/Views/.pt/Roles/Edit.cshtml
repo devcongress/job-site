@@ -1,0 +1,123 @@
+@model DevCongress.Jobs.Core.ViewModels.Roles.EditRoleViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "Edit Role";
+}
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    @if (Model.IsSuccess && Model.Role != null)
+    {
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" asp-route="edit_role" asp-route-id="@Model.Role.Id" class="form-horizontal">
+              <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">edit</i>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">@ViewData["Title"]</h4>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Name <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input type="text" class="form-control" name="Name" value="@Model.Role.Name" required="required">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Description <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <textarea class="form-control" name="Description" required="required">@Model.Role.Description</textarea>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Is Active</label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="IsActive" checked="@Model.Role.IsActive">
+                        </label>
+                      </div>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <a asp-route="view_role" asp-route-id="@Model.Role.Id" class="btn btn-github btn-fill">
+                  <span class="btn-label">
+                    <i class="material-icons">close</i>
+                  </span>
+                  Cancel
+                  <div class="ripple-container"></div>
+                </a>
+                @if (Model.Role.DeletedAt is null)
+                {
+                  if (CurrentUser.HasPermissions("role.update"))
+                  {
+                    <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+                  }
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" asp-route="edit_role_permissions" asp-route-id="@Model.Role.Id" class="form-horizontal">
+              <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">perm_identity</i>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Edit Permissions</h4>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <select name="Permissions" class="selectpicker" multiple data-style="select-with-transition" data-live-search="true" data-live-search-placeholder="Search..." data-size="7">
+                          <option value="">Select permissions</option>
+                          @foreach (var permission in Model.Permissions)
+                          {
+                            <option value="@permission.Id" selected="@(Model.Role.Permissions.Any(x => x.Id == permission.Id))" data-subtext="@permission.Name">@permission.Description</option>
+                          }
+                        </select>
+                        <span class="help-block"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                @if (Model.Role.DeletedAt is null)
+                {
+                  if (CurrentUser.HasPermissions("role.permissions.update"))
+                  {
+                    <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+                  }
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

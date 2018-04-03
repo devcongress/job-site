@@ -1,0 +1,81 @@
+@model DevCongress.Jobs.Core.ViewModels.Roles.AddRoleViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "Add Role";
+}
+
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <form method="post" asp-route="add_role" class="form-horizontal">
+            <div class="card-header card-header-icon" data-background-color="rose">
+              <i class="material-icons">add</i>
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">@ViewData["Title"]</h4>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Name <span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label"></label>
+                    <input type="text" class="form-control" name="Name" value="@Model.Name" required="required">
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Description <span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label"></label>
+                    <textarea class="form-control" name="Description" required="required">@Model.Description</textarea>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Is Active</label>
+                <div class="col-sm-8">
+
+                  <div class="form-group">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="IsActive" checked="@Model.IsActive">
+                      </label>
+                    </div>
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <a asp-route="list_roles" class="btn btn-github btn-fill">
+                <span class="btn-label">
+                  <i class="material-icons">close</i>
+                </span>
+                Cancel
+                <div class="ripple-container"></div>
+              </a>
+              @if (CurrentUser.HasPermissions("role.add"))
+              {
+                <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+              }
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

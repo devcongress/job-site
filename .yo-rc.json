@@ -1,0 +1,5 @@
+{
+  "generator-yellowcake": {
+    "pu:DevCongress.Jobs.Core:profile:fields": "[{\"pos\":10,\"name\":\"CompanyName\",\"type\":\"string\",\"default\":\"N/A\"},{\"pos\":20,\"name\":\"CompanyEmail\",\"type\":\"string\",\"check\":[{\"rule\":\"email\"},{\"rule\":\"length\",\"args\":[0,60]}],\"nullable\":true},{\"pos\":30,\"name\":\"CompanyWebsite\",\"type\":\"string\",\"check\":[{\"rule\":\"length\",\"args\":[0,60]}],\"nullable\":true},{\"pos\":40,\"name\":\"CompanyDescription\",\"type\":\"multiline\",\"check\":[{\"rule\":\"length\",\"args\":[0,500]}],\"nullable\":true}]"
+  }
+}

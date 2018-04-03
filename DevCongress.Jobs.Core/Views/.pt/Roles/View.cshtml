@@ -1,0 +1,232 @@
+@model DevCongress.Jobs.Core.ViewModels.Roles.ViewRoleViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "View Role";
+}
+
+<!---->
+
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    @if (Model.IsSuccess && Model.Role != null)
+    {
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-icon" data-background-color="rose">
+              <i class="material-icons">supervisor_account</i>
+            </div>
+            <div class="card-content form-horizontal">
+              <h4 class="card-title">@ViewData["Title"]</h4>
+
+              <div class="text-right">
+                <a asp-route="list_roles" class="btn btn-github btn-fill">
+                  <span class="btn-label">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                  </span>
+                  Back
+                  <div class="ripple-container"></div>
+                </a>
+                @if (Model.Role.DeletedAt is null)
+                {
+                  <a asp-route="edit_role" asp-route-id="@Model.Role.Id" class="btn btn-warning btn-fill">Edit<div class="ripple-container"></div></a>
+                }
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Name</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.Role.Name</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Description</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.Role.Description</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Is Active</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.Role.IsActive</p>
+                  </div>
+                </div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Created By</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">
+                          <a asp-route="view_user" asp-route-id="@Model.Role.CreatedBy">@Model.Role.CreatedBy</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Created At</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">@Model.Role.CreatedAt</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Updated By</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">
+                          <a asp-route="view_user" asp-route-id="@Model.Role.UpdatedBy">@Model.Role.UpdatedBy</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Updated At</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">@Model.Role.UpdatedAt</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              @if (Model.Role.DeletedAt != null)
+              {
+                <hr />
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-4 label-on-left">Deleted By</label>
+                      <div class="col-sm-8">
+                        <div class="form-group">
+                          <p class="form-control-static">
+                            <a asp-route="view_user" asp-route-id="@Model.Role.DeletedBy">@Model.Role.DeletedBy</a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-4 label-on-left">Deleted At</label>
+                      <div class="col-sm-8">
+                        <div class="form-group">
+                          <p class="form-control-static">@Model.Role.DeletedAt</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="nav-center">
+            <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+              <li class="active">
+                <a href="#permissions" role="tab" data-toggle="tab" aria-expanded="true">
+                  <i class="material-icons">perm_identity</i> Permissions
+                </a>
+              </li>
+              <li>
+                <a href="#audit-logs" role="tab" data-toggle="tab" aria-expanded="true">
+                  <i class="material-icons">event</i> Audit Logs
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active" id="permissions">
+              <div class="card">
+                <div class="card-content">
+                  @if (!Model.Role.Permissions.Any())
+                  {
+                    <span>No permissions found</span>
+                  }
+                  else
+                  {
+                    <table class="table table-hover table-responsive">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var permission in Model.Role.Permissions)
+                        {
+                          <tr>
+                            <td>@permission.Name</td>
+                            <td>@permission.Description</td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane " id="audit-logs">
+              <div class="card">
+                <div class="card-content">
+                  @if (!Model.AuditLogs.Any())
+                  {
+                    <span>No logs found</span>
+                  }
+                  else
+                  {
+                    <table class="table table-hover table-responsive">
+                      <thead>
+                        <tr>
+                          <th>Description</th>
+                          <th>User</th>
+                          <th>Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var log in Model.AuditLogs)
+                        {
+                          <tr title="@(CurrentUser.HasRoles("admin") ? log.ObjectData : "")">
+                            <td>@log.Description</td>
+                            <td>@log.Username</td>
+                            <td>@log.CreatedAt</td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

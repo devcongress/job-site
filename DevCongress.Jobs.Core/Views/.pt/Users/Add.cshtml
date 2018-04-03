@@ -1,0 +1,78 @@
+@model DevCongress.Jobs.Core.ViewModels.Users.AddUserViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "Add User";
+}
+
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <form method="post" asp-route="add_user" class="form-horizontal">
+            <div class="card-header card-header-icon" data-background-color="rose">
+              <i class="material-icons">add</i>
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">@ViewData["Title"]</h4>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Username <span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label"></label>
+                    <input type="text" class="form-control" name="Username" value="@Model.Username" required="required">
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Password <span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label"></label>
+                    <input type="password" class="form-control" name="Password" value="" required="required">
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Confirm Password <span class="text-danger">*</span></label>
+                <div class="col-sm-8">
+
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label"></label>
+                    <input type="password" class="form-control" name="ConfirmPassword" value="" required="required">
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <a asp-route="list_users" class="btn btn-github btn-fill">
+                <span class="btn-label">
+                  <i class="material-icons">close</i>
+                </span>
+                Cancel
+                <div class="ripple-container"></div>
+              </a>
+              @if (CurrentUser.HasPermissions("user.add"))
+              {
+                <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+              }
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

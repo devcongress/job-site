@@ -1,0 +1,304 @@
+@model DevCongress.Jobs.Core.ViewModels.Users.EditUserViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "Edit User";
+}
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    @if (Model.IsSuccess && Model.User != null)
+    {
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" asp-route="edit_user" asp-route-id="@Model.User.Id" class="form-horizontal">
+              <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">edit</i>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Edit User</h4>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Username <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input type="text" class="form-control" name="Username" value="@Model.User.Username" required="required">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Ban End</label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input type="text" class="form-control datetimepicker" name="BanEnd" value="@Model.User.BanEnd">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Is Confirmed</label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="IsConfirmed" checked="@Model.User.IsConfirmed">
+                        </label>
+                      </div>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Is Active</label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="IsActive" checked="@Model.User.IsActive">
+                        </label>
+                      </div>
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <a asp-route="view_user" asp-route-id="@Model.User.Id" class="btn btn-github btn-fill">
+                  <span class="btn-label">
+                    <i class="material-icons">close</i>
+                  </span>
+                  Cancel
+                  <div class="ripple-container"></div>
+                </a>
+                @if (Model.User.DeletedAt is null)
+                {
+                  if (CurrentUser.HasPermissions("user.update.su")
+                      || (CurrentUser.HasPermissions("user.update") && Model.User.CreatedBy == CurrentUser.Id))
+                  {
+                    <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+                  }
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" asp-route="edit_user_profile" asp-route-id="@Model.User.Id" class="form-horizontal">
+              <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">person</i>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Edit Profile</h4>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Name <span class="text-danger">*</span></label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input type="text" class="form-control" name="Name" value="@Model.User.Profile.Name" required="required">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">
+                    Company Name
+                    
+                    
+                  </label>
+                  <div class="col-sm-8">
+                    
+            <div class="form-group label-floating is-empty">
+              <label class="control-label"></label>
+              <input type="text" class="form-control" name="CompanyName" value="@Model.User.Profile.CompanyName" >
+              <span class="help-block"></span>
+            </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">
+                    Company Email
+                    
+                    
+                  </label>
+                  <div class="col-sm-8">
+                    
+            <div class="form-group label-floating is-empty">
+              <label class="control-label"></label>
+              <input type="text" class="form-control" name="CompanyEmail" value="@Model.User.Profile.CompanyEmail" >
+              <span class="help-block"></span>
+            </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">
+                    Company Website
+                    
+                    
+                  </label>
+                  <div class="col-sm-8">
+                    
+            <div class="form-group label-floating is-empty">
+              <label class="control-label"></label>
+              <input type="text" class="form-control" name="CompanyWebsite" value="@Model.User.Profile.CompanyWebsite" >
+              <span class="help-block"></span>
+            </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">
+                    Company Description
+                    
+                    
+                  </label>
+                  <div class="col-sm-8">
+                    
+          <div class="form-group label-floating is-empty">
+            <label class="control-label"></label>
+            <textarea class="form-control" name="CompanyDescription" >@Model.User.Profile.CompanyDescription</textarea>
+            <span class="help-block"></span>
+          </div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="card-footer text-center">
+                @if (Model.User.DeletedAt is null)
+                {
+                  if (CurrentUser.HasPermissions("user.profile.update.su")
+                      || (CurrentUser.HasPermissions("user.profile.update") && Model.User.CreatedBy == CurrentUser.Id))
+                  {
+                    <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+                  }
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" asp-route="change_user_password" asp-route-id="@Model.User.Id" class="form-horizontal">
+              <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">lock</i>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Change Password</h4>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Password</label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input type="password" class="form-control" name="Password" value="" required="required">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">Confirm Password</label>
+                  <div class="col-sm-8">
+
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label"></label>
+                      <input type="password" class="form-control" name="ConfirmPassword" value="" required="required">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-footer text-center">
+                @if (Model.User.DeletedAt is null)
+                {
+                  if (CurrentUser.HasPermissions("user.password.set.su")
+                    || (CurrentUser.HasPermissions("user.password.set") && Model.User.CreatedBy == CurrentUser.Id))
+                  {
+                    <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+                  }
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" asp-route="edit_user_roles" asp-route-id="@Model.User.Id" class="form-horizontal">
+              <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">group</i>
+              </div>
+              <div class="card-content">
+                <h4 class="card-title">Edit Roles</h4>
+                @foreach (var role in Model.Roles)
+                {
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">@role.Name</label>
+                    <div class="col-sm-4">
+
+                      <div class="form-group">
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="Roles[]" value="@role.Id" checked="@Model.User.Roles.Any(p => p.Id == role.Id)" />
+                          </label>
+                        </div>
+                        <span class="help-block">@role.Description</span>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+              <div class="card-footer text-center">
+                @if (Model.User.DeletedAt is null)
+                {
+                  if (CurrentUser.HasPermissions("user.roles.update.su")
+                        || (CurrentUser.HasPermissions("user.roles.update") && Model.User.CreatedBy == CurrentUser.Id))
+                  {
+                    <button type="submit" class="btn btn-rose btn-fill">Submit<div class="ripple-container"></div></button>
+                  }
+                }
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

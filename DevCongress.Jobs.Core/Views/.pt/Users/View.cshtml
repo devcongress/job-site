@@ -1,0 +1,308 @@
+@model DevCongress.Jobs.Core.ViewModels.Users.ViewUserViewModel
+
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  ViewData["Title"] = "View User";
+}
+
+<!---->
+
+<div class="content">
+  <div class="container-fluid">
+
+    @await Html.PartialAsync("_Messages")
+
+    @if (Model.IsSuccess && Model.User != null)
+    {
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-icon" data-background-color="rose">
+              <i class="material-icons">person</i>
+            </div>
+            <div class="card-content form-horizontal">
+              <h4 class="card-title">@ViewData["Title"]</h4>
+
+              <div class="text-right">
+                <a asp-route="list_users" class="btn btn-github btn-fill">
+                  <span class="btn-label">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                  </span>
+                  Back
+                  <div class="ripple-container"></div>
+                </a>
+                @if (Model.User.DeletedAt is null)
+                {
+                  <a asp-route="edit_user" asp-route-id="@Model.User.Id" class="btn btn-warning btn-fill">Edit<div class="ripple-container"></div></a>
+                }
+              </div>
+
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Username</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.User.Username</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Last Login</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.User.LastLogin</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Lockout End</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.User.LockoutEnd</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Ban End</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.User.BanEnd</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Is Confirmed</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.User.IsConfirmed</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 label-on-left">Is Active</label>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <p class="form-control-static">@Model.User.IsActive</p>
+                  </div>
+                </div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Created By</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">
+                          <a asp-route="view_user" asp-route-id="@Model.User.CreatedBy">@Model.User.CreatedBy</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Created At</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">@Model.User.CreatedAt</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Updated By</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">
+                          <a asp-route="view_user" asp-route-id="@Model.User.UpdatedBy">@Model.User.UpdatedBy</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <label class="col-sm-4 label-on-left">Updated At</label>
+                    <div class="col-sm-8">
+                      <div class="form-group">
+                        <p class="form-control-static">@Model.User.UpdatedAt</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              @if (Model.User.DeletedAt != null)
+              {
+                <hr />
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-4 label-on-left">Deleted By</label>
+                      <div class="col-sm-8">
+                        <div class="form-group">
+                          <p class="form-control-static">
+                            <a asp-route="view_user" asp-route-id="@Model.User.DeletedBy">@Model.User.DeletedBy</a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-4 label-on-left">Deleted At</label>
+                      <div class="col-sm-8">
+                        <div class="form-group">
+                          <p class="form-control-static">@Model.User.DeletedAt</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="nav-center">
+            <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+              <li class="active">
+                <a href="#roles" role="tab" data-toggle="tab" aria-expanded="true">
+                  <i class="material-icons">group</i> Roles
+                </a>
+              </li>
+              <li>
+                <a href="#profile" role="tab" data-toggle="tab" aria-expanded="true">
+                  <i class="material-icons">person</i> Profile
+                </a>
+              </li>
+              <li>
+                <a href="#audit-logs" role="tab" data-toggle="tab" aria-expanded="true">
+                  <i class="material-icons">event</i> Audit Logs
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active" id="roles">
+              <div class="card">
+                <div class="card-content">
+                  @if (!Model.User.Roles.Any())
+                  {
+                    <span>No roles found</span>
+                  }
+                  else
+                  {
+                    <table class="table table-hover table-responsive">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var role in Model.User.Roles)
+                        {
+                          <tr>
+                            <td>@role.Name</td>
+                            <td>@role.Description</td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                  }
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="profile">
+              <div class="card">
+                <div class="card-content">
+                  <table class="table table-bordered table-responsive">
+                    <tbody>
+                      <tr>
+                        <th>Name</th>
+                        <td>@Model.User.Profile.Name</td>
+                      </tr>
+                      <tr>
+                        <th>Company Name</th>
+                        <td>
+                          
+                          <p class="form-control-static">@Model.User.Profile.CompanyName</p>
+                          
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Company Email</th>
+                        <td>
+                          
+                          <p class="form-control-static">@Model.User.Profile.CompanyEmail</p>
+                          
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Company Website</th>
+                        <td>
+                          
+                          <p class="form-control-static">@Model.User.Profile.CompanyWebsite</p>
+                          
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Company Description</th>
+                        <td>
+                          
+                          <p class="form-control-static">@Model.User.Profile.CompanyDescription</p>
+                          
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane " id="audit-logs">
+              <div class="card">
+                <div class="card-content">
+                  @if (!Model.AuditLogs.Any())
+                  {
+                    <span>No logs found</span>
+                  }
+                  else
+                  {
+                    <table class="table table-hover table-responsive">
+                      <thead>
+                        <tr>
+                          <th>Description</th>
+                          <th>User</th>
+                          <th>Time</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach (var log in Model.AuditLogs)
+                        {
+                          <tr title="@(CurrentUser.HasRoles("admin") ? log.ObjectData : "")">
+                            <td>@log.Description</td>
+                            <td>@log.Username</td>
+                            <td>@log.CreatedAt</td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

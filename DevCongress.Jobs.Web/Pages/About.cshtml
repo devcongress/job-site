@@ -1,0 +1,22 @@
+@page
+@model AboutModel
+@{
+  ViewData["Title"] = "About";
+}
+
+<div class="wrapper wrapper-full-page">
+  <div class="full-page login-page" filter-color="black" data-image="/img/register.jpeg">
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+
+    <div class="content">
+      <div class="container">
+
+        <h2>@ViewData["Title"]</h2>
+        <h3>@Model.Message</h3>
+
+        <p>Use this area to provide additional information.</p>
+      </div>
+    </div>
+    @await Html.PartialAsync("_Footer")
+  </div>
+</div>

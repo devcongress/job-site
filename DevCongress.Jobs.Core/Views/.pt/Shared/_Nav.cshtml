@@ -1,0 +1,57 @@
+@inject Plutonium.Reactor.Services.MenuProvider.IMenuProvider menuProvider
+@{
+  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+
+  var menu = menuProvider.GetMenu(typeof(Entry).Assembly);
+}
+
+<ul class="nav">
+  @foreach (var menuItem in menu)
+  {
+    if (!menuItem.IsGroup)
+    {
+      if (CurrentUser.HasRoles(menuItem.Roles) && CurrentUser.HasPermissions(menuItem.Permissions))
+      {
+        <li class="@(menuItem.Controller == ViewContext.RouteData.Values["Controller"].ToString() ? "active" : "")">
+          <a asp-route="@menuItem.Route">
+            <i class="material-icons">@menuItem.Icon</i>
+            <p> @menuItem.Name</p>
+          </a>
+        </li>
+      }
+    }
+    else
+    {
+      if (CurrentUser.HasRoles(menuItem.Roles) && CurrentUser.HasPermissions(menuItem.Permissions))
+      {
+        var controllers = menuItem.Items.Select(x => x.Controller).ToArray();
+
+        <li class="@(controllers.Contains(ViewContext.RouteData.Values["Controller"].ToString()) ? "active" : "")">
+          <a data-toggle="collapse" href="#@(menuItem.Name)Menu">
+            <i class="material-icons">@menuItem.Icon</i>
+            <p>
+              @menuItem.Name
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse @(controllers.Contains(ViewContext.RouteData.Values["Controller"].ToString()) ? " in" : "")" id="@(menuItem.Name)Menu">
+            <ul class="nav">
+              @foreach (var item in menuItem.Items)
+              {
+                if (CurrentUser.HasRoles(item.Roles) && CurrentUser.HasPermissions(item.Permissions))
+                {
+                  <li class="@(item.Controller == ViewContext.RouteData.Values["Controller"].ToString() ? "active" : "")">
+                    <a asp-route="@item.Route">
+                      <i class="material-icons">@item.Icon</i>
+                      <p> @item.Name</p>
+                    </a>
+                  </li>
+                }
+              }
+            </ul>
+          </div>
+        </li>
+      }
+    }
+  }
+</ul>

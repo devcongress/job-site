@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Core" Version="1.4.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.0.0" />
+    <PackageReference Include="Plutonium.Reactor" Version="0.0.32" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Options/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views/**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views/**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers/.pt/**/*.cs" />
+    <Compile Include="Domain/.pt/**/*.cs" />
+    <Compile Include="Features/.pt/**/*.cs" />
+    <Compile Include="ViewModels/.pt/**/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources/**/*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Migrations/**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
