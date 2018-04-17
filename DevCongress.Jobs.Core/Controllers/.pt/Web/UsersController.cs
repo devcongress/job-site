@@ -288,7 +288,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
     public virtual async Task<IActionResult> EditProfile(
       [FromRoute] int Id
     , [FromForm] string Name
-        ,[FromForm] string CompanyEmail = null        ,[FromForm] string CompanyWebsite = null        ,[FromForm] string CompanyDescription = null        )
+        ,[FromForm] string CompanyEmail = null        ,[FromForm] string CompanyWebsite = null        ,[FromForm] string CompanyTwitter = null        ,[FromForm] string CompanyDescription = null        )
     {
       try
       {
@@ -298,6 +298,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
             Name: Name,
                         CompanyEmail : CompanyEmail,
                         CompanyWebsite : CompanyWebsite,
+                        CompanyTwitter : CompanyTwitter,
                         CompanyDescription : CompanyDescription,
             
 

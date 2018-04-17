@@ -63,6 +63,7 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
             Name: command.Name,
                         CompanyEmail :command.CompanyEmail,
                         CompanyWebsite :command.CompanyWebsite,
+                        CompanyTwitter :command.CompanyTwitter,
                         CompanyDescription :command.CompanyDescription,
             
 

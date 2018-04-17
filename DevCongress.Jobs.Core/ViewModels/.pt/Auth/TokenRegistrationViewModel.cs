@@ -9,6 +9,7 @@ namespace DevCongress.Jobs.Core.ViewModels.Auth
         public string Name { get; internal set; }
                 public string CompanyEmail { get; internal set; }
                 public string CompanyWebsite { get; internal set; }
+                public string CompanyTwitter { get; internal set; }
                 public string CompanyDescription { get; internal set; }
         
     }

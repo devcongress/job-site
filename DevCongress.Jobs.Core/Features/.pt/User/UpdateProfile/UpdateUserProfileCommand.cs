@@ -17,6 +17,7 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
     public string Name { get; }
         public string CompanyEmail { get; }
         public string CompanyWebsite { get; }
+        public string CompanyTwitter { get; }
         public string CompanyDescription { get; }
     
 
@@ -28,6 +29,7 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
           string Name,
                     string CompanyEmail = null,
                     string CompanyWebsite = null,
+                    string CompanyTwitter = null,
                     string CompanyDescription = null,
           
 
@@ -37,6 +39,7 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
       this.Name = Name;
             this.CompanyEmail = CompanyEmail;
             this.CompanyWebsite = CompanyWebsite;
+            this.CompanyTwitter = CompanyTwitter;
             this.CompanyDescription = CompanyDescription;
       
 

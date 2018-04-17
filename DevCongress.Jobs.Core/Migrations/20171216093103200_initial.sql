@@ -103,6 +103,7 @@ CREATE TABLE public."user_profile"
   
   company_email text NULL, 
   company_website text NULL, 
+  company_twitter text NULL, 
   company_description text NULL, 
 
   created_by integer NOT NULL,
@@ -112,6 +113,7 @@ CREATE TABLE public."user_profile"
   CONSTRAINT user_profile_pkey PRIMARY KEY (id),  
   CONSTRAINT item_company_email_check_len CHECK (char_length(company_email) >= 0 AND char_length(company_email) <= 60),
   CONSTRAINT item_company_website_check_len CHECK (char_length(company_website) >= 0 AND char_length(company_website) <= 60),
+  CONSTRAINT item_company_twitter_check_len CHECK (char_length(company_twitter) >= 0 AND char_length(company_twitter) <= 60),
   CONSTRAINT item_company_description_check_len CHECK (char_length(company_description) >= 0 AND char_length(company_description) <= 500),
   CONSTRAINT user_profile_name_check_len CHECK (char_length(name) >= 1 AND char_length(name) <= 50),
   CONSTRAINT user_profile_user_id_key UNIQUE (user_id),

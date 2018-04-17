@@ -260,7 +260,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
         public virtual async Task<IActionResult> InitTokenRegistration(
               [FromForm] string Name
             , [FromForm] string Email
-                , [FromForm] string CompanyEmail = null                , [FromForm] string CompanyWebsite = null                , [FromForm] string CompanyDescription = null                )
+                , [FromForm] string CompanyEmail = null                , [FromForm] string CompanyWebsite = null                , [FromForm] string CompanyTwitter = null                , [FromForm] string CompanyDescription = null                )
         {
             if (CurrentUser.IsAuthenticated)
             {
@@ -274,6 +274,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
                 Name = Name,
                                 CompanyEmail = CompanyEmail,
                                 CompanyWebsite = CompanyWebsite,
+                                CompanyTwitter = CompanyTwitter,
                                 CompanyDescription = CompanyDescription,
                 
             };
@@ -283,6 +284,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
                 Name = Name,
                                 CompanyEmail = CompanyEmail,
                                 CompanyWebsite = CompanyWebsite,
+                                CompanyTwitter = CompanyTwitter,
                                 CompanyDescription = CompanyDescription,
                 
             };
@@ -418,7 +420,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
         [HttpPost("Profile", Name = "my_profile")]
         public virtual async Task<IActionResult> Profile(
               [FromForm] string Name
-                , [FromForm] string CompanyEmail = null                , [FromForm] string CompanyWebsite = null                , [FromForm] string CompanyDescription = null                )
+                , [FromForm] string CompanyEmail = null                , [FromForm] string CompanyWebsite = null                , [FromForm] string CompanyTwitter = null                , [FromForm] string CompanyDescription = null                )
         {
             try
             {
@@ -428,6 +430,7 @@ namespace DevCongress.Jobs.Core.Controllers.Web
                     Name: Name,
                                         CompanyEmail : CompanyEmail,
                                         CompanyWebsite : CompanyWebsite,
+                                        CompanyTwitter : CompanyTwitter,
                                         CompanyDescription : CompanyDescription,
                     
 

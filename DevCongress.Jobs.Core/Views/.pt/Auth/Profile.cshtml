@@ -1,206 +1,212 @@
 @model DevCongress.Jobs.Core.ViewModels.Auth.ProfileViewModel
 
 @{
-  var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
+    var CurrentUser = (AuthenticatedUser)ViewData["CurrentUser"];
 
-  ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Profile";
 }
 
 <!---->
 
 <div class="content">
-  <div class="container-fluid">
+    <div class="container-fluid">
 
-    @await Html.PartialAsync("_Messages")
+        @await Html.PartialAsync("_Messages")
 
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card">
-          <form method="post" asp-route="my_profile" class="form-horizontal">
-            <div class="card-header card-header-icon" data-background-color="rose">
-              <i class="material-icons">perm_identity</i>
-            </div>
-            <div class="card-content">
-              <h4 class="card-title">Edit Profile</h4>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <form method="post" asp-route="my_profile" class="form-horizontal">
+                        <div class="card-header card-header-icon" data-background-color="rose">
+                            <i class="material-icons">perm_identity</i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Edit Profile</h4>
 
-              <div class="row">
-                <label class="col-sm-2 label-on-left">Name <span class="text-danger">*</span></label>
-                <div class="col-sm-10">
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Name <span class="text-danger">*</span></label>
+                                <div class="col-sm-10">
 
-                  <div class="form-group label-floating is-empty">
-                    <label class="control-label"></label>
-                    <input type="text" class="form-control" name="Name" value="@Model.User.Profile.Name" required="required">
-                    <span class="help-block"></span>
-                  </div>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label"></label>
+                                        <input type="text" class="form-control" name="Name" value="@Model.User.Profile.Name" required="required">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">
+                                    Company Email
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-sm-10">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label"></label>
+                                        <input type="text" class="form-control" name="CompanyEmail" value="@Model.User.Profile.CompanyEmail" required="required">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">
+                                    Company Website
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-sm-10">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label"></label>
+                                        <input type="text" class="form-control" name="CompanyWebsite" value="@Model.User.Profile.CompanyWebsite" required="required">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">
+                                    Company Twitter
+                                </label>
+                                <div class="col-sm-10">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label"></label>
+                                        <input type="text" class="form-control" name="CompanyTwitter" value="@Model.User.Profile.CompanyTwitter">
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">
+                                    Company Description
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-sm-10">
+
+                                    <div class="form-group label-floating">
+                                        <label class="control-label"></label>
+                                        <textarea class="form-control" name="CompanyDescription" required="required">@Model.User.Profile.CompanyDescription</textarea>
+                                        <span class="help-block"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-rose btn-fill">Save<div class="ripple-container"></div></button>
+                        </div>
+                    </form>
                 </div>
-              </div>
-
-
-              <div class="row">
-                <label class="col-sm-2 label-on-left">
-                  Company Email
-                  <span class="text-danger">*</span>
-                  
-                </label>
-                <div class="col-sm-10">
-                  
-            <div class="form-group label-floating is-empty">
-              <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyEmail" value="@Model.User.Profile.CompanyEmail" required="required">
-              <span class="help-block"></span>
             </div>
-                </div>
-              </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-content">
 
-
-              <div class="row">
-                <label class="col-sm-2 label-on-left">
-                  Company Website
-                  
-                  
-                </label>
-                <div class="col-sm-10">
-                  
-            <div class="form-group label-floating is-empty">
-              <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyWebsite" value="@Model.User.Profile.CompanyWebsite" >
-              <span class="help-block"></span>
-            </div>
-                </div>
-              </div>
-
-
-              <div class="row">
-                <label class="col-sm-2 label-on-left">
-                  Company Description
-                  <span class="text-danger">*</span>
-                  
-                </label>
-                <div class="col-sm-10">
-                  
-          <div class="form-group label-floating is-empty">
-            <label class="control-label"></label>
-            <textarea class="form-control" name="CompanyDescription" required="required">@Model.User.Profile.CompanyDescription</textarea>
-            <span class="help-block"></span>
-          </div>
-                </div>
-              </div>
-
-
-            </div>
-            <div class="card-footer text-center">
-              <button type="submit" class="btn btn-rose btn-fill">Save<div class="ripple-container"></div></button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-content">
-
-            <h4 class="card-title">
-              @Model.User.Profile.Name
-            </h4>
-            <h6 class="category text-gray">
-              @Model.User.Username
-            </h6>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      @if (!string.IsNullOrWhiteSpace(@Url.RouteUrl("update_password")))
-      {
-        <div class="col-md-8">
-          <div class="card">
-            <form method="post" asp-route="update_password" class="form-horizontal">
-              <div class="card-header card-header-icon" data-background-color="rose">
-                <i class="material-icons">lock</i>
-              </div>
-              <div class="card-content">
-                <h4 class="card-title">
-                  Change Password
-                </h4>
-
-                <div class="row">
-                  <label class="col-sm-2 label-on-left">New Password</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-group label-floating is-empty">
-                      <label class="control-label"></label>
-                      <input type="password" class="form-control" name="Password" value="" required="required">
-                      <span class="help-block"></span>
+                        <h4 class="card-title">
+                            @Model.User.Profile.Name
+                        </h4>
+                        <h6 class="category text-gray">
+                            @Model.User.Username
+                        </h6>
                     </div>
-                  </div>
                 </div>
-
-                <div class="row">
-                  <label class="col-sm-2 label-on-left">Confirm New Password</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-group label-floating is-empty">
-                      <label class="control-label"></label>
-                      <input type="password" class="form-control" name="ConfirmPassword" value="" required="required">
-                      <span class="help-block"></span>
-                    </div>
-                  </div>
-                </div>
-                <hr />
-
-                <div class="row">
-                  <label class="col-sm-2 label-on-left">Current Password</label>
-                  <div class="col-sm-10">
-
-                    <div class="form-group label-floating is-empty">
-                      <label class="control-label"></label>
-                      <input type="password" class="form-control" name="CurrentPassword" value="" required="required">
-                      <span class="help-block">Enter your current password</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card-footer text-center">
-                <button type="submit" class="btn btn-rose btn-fill">Update<div class="ripple-container"></div></button>
-              </div>
-            </form>
-          </div>
+            </div>
         </div>
-      }
 
-      <div class="@(!string.IsNullOrWhiteSpace(@Url.RouteUrl("update_password")) ? "col-md-4" : "col-md-12")">
-        <div class="card">
-          <div class="card-content">
-            @if (!Model.AuditLogs.Any())
+        <div class="row">
+            @if (!string.IsNullOrWhiteSpace(@Url.RouteUrl("update_password")))
             {
-              <span>No logs found</span>
+                <div class="col-md-8">
+                    <div class="card">
+                        <form method="post" asp-route="update_password" class="form-horizontal">
+                            <div class="card-header card-header-icon" data-background-color="rose">
+                                <i class="material-icons">lock</i>
+                            </div>
+                            <div class="card-content">
+                                <h4 class="card-title">
+                                    Change Password
+                                </h4>
+
+                                <div class="row">
+                                    <label class="col-sm-2 label-on-left">New Password</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label"></label>
+                                            <input type="password" class="form-control" name="Password" value="" required="required">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 label-on-left">Confirm New Password</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label"></label>
+                                            <input type="password" class="form-control" name="ConfirmPassword" value="" required="required">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+
+                                <div class="row">
+                                    <label class="col-sm-2 label-on-left">Current Password</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label"></label>
+                                            <input type="password" class="form-control" name="CurrentPassword" value="" required="required">
+                                            <span class="help-block">Enter your current password</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-rose btn-fill">Update<div class="ripple-container"></div></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             }
-            else
-            {
-              <table class="table table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Description</th>
-                    <th>User</th>
-                    <th>Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach (var log in Model.AuditLogs)
-                  {
-                    <tr title="@(CurrentUser.HasRoles("admin") ? log.ObjectData : "")">
-                      <td>@log.Description</td>
-                      <td>@log.Username</td>
-                      <td>@log.CreatedAt</td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
-            }
-          </div>
+
+            <div class="@(!string.IsNullOrWhiteSpace(@Url.RouteUrl("update_password")) ? "col-md-4" : "col-md-12")">
+                <div class="card">
+                    <div class="card-content">
+                        @if (!Model.AuditLogs.Any())
+                        {
+                            <span>No logs found</span>
+                        }
+                        else
+                        {
+                            <table class="table table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>User</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var log in Model.AuditLogs)
+                                    {
+                                        <tr title="@(CurrentUser.HasRoles("admin") ? log.ObjectData : "")">
+                                            <td>@log.Description</td>
+                                            <td>@log.Username</td>
+                                            <td>@log.CreatedAt</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

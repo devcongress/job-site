@@ -47,6 +47,7 @@ namespace DevCongress.Jobs.Core.Features.User.Add
                     Name: command.Username,
                                         CompanyEmail :null,
                                         CompanyWebsite :null,
+                                        CompanyTwitter :null,
                                         CompanyDescription :null,
                     
 

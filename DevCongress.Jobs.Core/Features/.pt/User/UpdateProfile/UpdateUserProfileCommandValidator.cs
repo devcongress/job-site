@@ -41,7 +41,13 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
             RuleFor(request => request.CompanyEmail).Length(fields => 0, fields => 60);
       
                                     
+            RuleFor(request => request.CompanyWebsite).NotEmpty();
+      
+                        
             RuleFor(request => request.CompanyWebsite).Length(fields => 0, fields => 60);
+      
+                                    
+            RuleFor(request => request.CompanyTwitter).Length(fields => 0, fields => 60);
       
                                     
             RuleFor(request => request.CompanyDescription).NotEmpty();

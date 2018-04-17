@@ -130,6 +130,7 @@ namespace DevCongress.Jobs.Core.Controllers.Api
       , [FromForm] string Name
         , [FromForm] string CompanyEmail = null
         , [FromForm] string CompanyWebsite = null
+        , [FromForm] string CompanyTwitter = null
         , [FromForm] string CompanyDescription = null
         )
     {
@@ -139,6 +140,7 @@ namespace DevCongress.Jobs.Core.Controllers.Api
           Name: Name,
                     CompanyEmail : CompanyEmail,
                     CompanyWebsite : CompanyWebsite,
+                    CompanyTwitter : CompanyTwitter,
                     CompanyDescription : CompanyDescription,
           
 

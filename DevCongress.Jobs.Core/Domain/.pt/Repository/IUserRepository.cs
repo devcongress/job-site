@@ -106,6 +106,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
             string Name,
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
+                        string CompanyTwitter = null,
                         string CompanyDescription = null,
             
             int modifiedBy = 0);
@@ -116,6 +117,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
             string Name,
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
+                        string CompanyTwitter = null,
                         string CompanyDescription = null,
             
             int modifiedBy = 0);
@@ -754,6 +756,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
             string Name,
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
+                        string CompanyTwitter = null,
                         string CompanyDescription = null,
             
             int modifiedBy = 0)
@@ -769,6 +772,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
 
                                   company_email,
                                   company_website,
+                                  company_twitter,
                                   company_description,
 
 
@@ -782,6 +786,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
 
                                   @CompanyEmail,
                                   @CompanyWebsite,
+                                  @CompanyTwitter,
                                   @CompanyDescription,
 
 
@@ -805,6 +810,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
 
                     CompanyEmail,
                     CompanyWebsite,
+                    CompanyTwitter,
                     CompanyDescription,
           
 
@@ -819,6 +825,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
             string Name,
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
+                        string CompanyTwitter = null,
                         string CompanyDescription = null,
             
             int modifiedBy = 0)
@@ -839,6 +846,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
 
                                   company_email = @CompanyEmail,
                                   company_website = @CompanyWebsite,
+                                  company_twitter = @CompanyTwitter,
                                   company_description = @CompanyDescription,
 
 
@@ -862,6 +870,7 @@ namespace DevCongress.Jobs.Core.Domain.Repository
 
                     CompanyEmail,
                     CompanyWebsite,
+                    CompanyTwitter,
                     CompanyDescription,
           
 

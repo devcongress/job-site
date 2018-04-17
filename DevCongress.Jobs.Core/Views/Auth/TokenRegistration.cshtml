@@ -27,6 +27,7 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Email Address <span class="text-danger">*</span></label>
                                     <input name="Email" type="email" value="@Model.Email" class="form-control" required="required">
+                                    <span class="help-block">Used for login.</span>
                                 </div>
                             </div>
 
@@ -49,6 +50,17 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Company Email <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="CompanyEmail" value="@Model.CompanyEmail" required="required">
+                                    <span class="help-block">Applications will be sent to this email address</span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">mail_outline</i>
+                                </span>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Company Website <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="CompanyWebsite" value="@Model.CompanyWebsite" required="required">
                                     <span class="help-block"></span>
                                 </div>
                             </div>
@@ -58,9 +70,9 @@
                                     <i class="material-icons">mail_outline</i>
                                 </span>
                                 <div class="form-group label-floating">
-                                    <label class="control-label">Company Website</label>
-                                    <input type="text" class="form-control" name="CompanyWebsite" value="@Model.CompanyWebsite">
-                                    <span class="help-block"></span>
+                                    <label class="control-label">Company Twitter</label>
+                                    <input type="text" class="form-control" name="CompanyTwitter" value="@Model.CompanyTwitter">
+                                    <span class="help-block">Used for displaying your logo</span>
                                 </div>
                             </div>
 
@@ -71,7 +83,7 @@
                                 <div class="form-group label-floating">
                                     <label class="control-label">Company Description <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="CompanyDescription" required="required">@Model.CompanyDescription</textarea>
-                                    <span class="help-block"></span>
+                                    <span class="help-block">Explain what your company is about</span>
                                 </div>
                             </div>
                         </div>

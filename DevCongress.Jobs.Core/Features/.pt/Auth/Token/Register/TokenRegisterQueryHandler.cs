@@ -98,6 +98,7 @@ namespace DevCongress.Jobs.Core.Features.Auth.Token.Register
                     Name: registrationDetails.Name,
                                         CompanyEmail : registrationDetails.CompanyEmail,
                                         CompanyWebsite : registrationDetails.CompanyWebsite,
+                                        CompanyTwitter : registrationDetails.CompanyTwitter,
                                         CompanyDescription : registrationDetails.CompanyDescription,
                     
 

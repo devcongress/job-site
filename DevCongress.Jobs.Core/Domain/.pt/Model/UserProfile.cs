@@ -16,6 +16,8 @@ namespace DevCongress.Jobs.Core.Domain.Model
         
                 public string CompanyWebsite { get; set; }
         
+                public string CompanyTwitter { get; set; }
+        
                 public string CompanyDescription { get; set; }
         
         public int CreatedBy { get; set; }
