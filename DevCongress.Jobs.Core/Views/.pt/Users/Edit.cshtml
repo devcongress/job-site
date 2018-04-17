@@ -32,7 +32,7 @@
                   <label class="col-sm-4 label-on-left">Username <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
 
-                    <div class="form-group label-floating is-empty">
+                    <div class="form-group label-floating">
                       <label class="control-label"></label>
                       <input type="text" class="form-control" name="Username" value="@Model.User.Username" required="required">
                       <span class="help-block"></span>
@@ -44,7 +44,7 @@
                   <label class="col-sm-4 label-on-left">Ban End</label>
                   <div class="col-sm-8">
 
-                    <div class="form-group label-floating is-empty">
+                    <div class="form-group label-floating">
                       <label class="control-label"></label>
                       <input type="text" class="form-control datetimepicker" name="BanEnd" value="@Model.User.BanEnd">
                       <span class="help-block"></span>
@@ -116,7 +116,7 @@
                   <label class="col-sm-4 label-on-left">Name <span class="text-danger">*</span></label>
                   <div class="col-sm-8">
 
-                    <div class="form-group label-floating is-empty">
+                    <div class="form-group label-floating">
                       <label class="control-label"></label>
                       <input type="text" class="form-control" name="Name" value="@Model.User.Profile.Name" required="required">
                       <span class="help-block"></span>
@@ -133,7 +133,7 @@
                   </label>
                   <div class="col-sm-8">
                     
-            <div class="form-group label-floating is-empty">
+            <div class="form-group label-floating">
               <label class="control-label"></label>
               <input type="text" class="form-control" name="CompanyEmail" value="@Model.User.Profile.CompanyEmail" required="required">
               <span class="help-block"></span>
@@ -145,14 +145,31 @@
                 <div class="row">
                   <label class="col-sm-4 label-on-left">
                     Company Website
+                    <span class="text-danger">*</span>
+                    
+                  </label>
+                  <div class="col-sm-8">
+                    
+            <div class="form-group label-floating">
+              <label class="control-label"></label>
+              <input type="text" class="form-control" name="CompanyWebsite" value="@Model.User.Profile.CompanyWebsite" required="required">
+              <span class="help-block"></span>
+            </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <label class="col-sm-4 label-on-left">
+                    Company Twitter
                     
                     
                   </label>
                   <div class="col-sm-8">
                     
-            <div class="form-group label-floating is-empty">
+            <div class="form-group label-floating">
               <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyWebsite" value="@Model.User.Profile.CompanyWebsite" >
+              <input type="text" class="form-control" name="CompanyTwitter" value="@Model.User.Profile.CompanyTwitter" >
               <span class="help-block"></span>
             </div>
                   </div>
@@ -167,7 +184,7 @@
                   </label>
                   <div class="col-sm-8">
                     
-          <div class="form-group label-floating is-empty">
+          <div class="form-group label-floating">
             <label class="control-label"></label>
             <textarea class="form-control" name="CompanyDescription" required="required">@Model.User.Profile.CompanyDescription</textarea>
             <span class="help-block"></span>
@@ -207,7 +224,7 @@
                   <label class="col-sm-4 label-on-left">Password</label>
                   <div class="col-sm-8">
 
-                    <div class="form-group label-floating is-empty">
+                    <div class="form-group label-floating">
                       <label class="control-label"></label>
                       <input type="password" class="form-control" name="Password" value="" required="required">
                       <span class="help-block"></span>
@@ -219,7 +236,7 @@
                   <label class="col-sm-4 label-on-left">Confirm Password</label>
                   <div class="col-sm-8">
 
-                    <div class="form-group label-floating is-empty">
+                    <div class="form-group label-floating">
                       <label class="control-label"></label>
                       <input type="password" class="form-control" name="ConfirmPassword" value="" required="required">
                       <span class="help-block"></span>
