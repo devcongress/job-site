@@ -40,4 +40,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Auth\Profile.cshtml" />
+  </ItemGroup>
 </Project>

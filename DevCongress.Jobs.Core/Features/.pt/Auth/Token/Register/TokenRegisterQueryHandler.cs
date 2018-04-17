@@ -96,7 +96,6 @@ namespace DevCongress.Jobs.Core.Features.Auth.Token.Register
         await _userRepository.AddProfile(
                     UserId: userId,
                     Name: registrationDetails.Name,
-                                        CompanyName : registrationDetails.CompanyName,
                                         CompanyEmail : registrationDetails.CompanyEmail,
                                         CompanyWebsite : registrationDetails.CompanyWebsite,
                                         CompanyDescription : registrationDetails.CompanyDescription,

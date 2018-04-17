@@ -2,21 +2,18 @@
 
 [
 	{
-		"pos" : 10,
-		"name":"CompanyName",
-		"type":"string",
-		"default": "N/A"
-	},
-	{
 		"pos" : 20,
 		"name":"CompanyEmail",
 		"type":"string",
 		"check": [
 			{ 
-				"rule" : "email"
-			}
+				"rule" : "required"
+			},
 			{ 
-				"rule" : "length"
+				"rule" : "email"
+			},
+			{ 
+				"rule" : "length",
 				"args": [0, 60]
 			}
 		],
@@ -28,7 +25,7 @@
 		"type":"string",
 		"check": [
 			{ 
-				"rule" : "length"
+				"rule" : "length",
 				"args": [0, 60]
 			}
 		],
@@ -40,10 +37,16 @@
 		"type":"multiline",
 		"check": [
 			{ 
-				"rule" : "length"
+				"rule" : "required"
+			},
+			{ 
+				"rule" : "length",
 				"args": [0, 500]
 			}
 		],
 		"nullable": true
 	}
 ]
+
+
+[{"pos":20,"name":"CompanyEmail","type":"string","check":[{"rule":"required"},{"rule":"email"},{"rule":"length","args":[0,60]}],"nullable":true},{"pos":30,"name":"CompanyWebsite","type":"string","check":[{"rule":"length","args":[0,60]}],"nullable":true},{"pos":40,"name":"CompanyDescription","type":"multiline","check":[{"rule":"required"},{"rule":"length","args":[0,500]}],"nullable":true}]

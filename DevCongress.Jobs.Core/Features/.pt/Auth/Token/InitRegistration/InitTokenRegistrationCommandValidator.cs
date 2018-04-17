@@ -1,6 +1,7 @@
 using FluentValidation;
 using System.Linq;
 using System;
+using DevCongress.Jobs.Core.Domain.DTO;
 
 namespace DevCongress.Jobs.Core.Features.Auth.Token.InitRegistration
 {
@@ -31,6 +32,7 @@ namespace DevCongress.Jobs.Core.Features.Auth.Token.InitRegistration
       RuleFor(request => request.ConfirmUrl).NotEmpty();
 
       RuleFor(request => request.RegistrationDetails).NotNull();
+      RuleFor(request => request.RegistrationDetails).SetValidator(new RegistrationDetailsValidator());
     }
 
     protected virtual void AddCustomRules()

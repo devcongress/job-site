@@ -45,7 +45,6 @@ namespace DevCongress.Jobs.Core.Features.User.Add
         await _userRepository.AddProfile(
                     UserId: userId,
                     Name: command.Username,
-                                        CompanyName :"N/A",
                                         CompanyEmail :null,
                                         CompanyWebsite :null,
                                         CompanyDescription :null,

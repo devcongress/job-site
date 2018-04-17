@@ -104,7 +104,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
     Task<int> AddProfile(
             int UserId,
             string Name,
-                        string CompanyName = "N/A",
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
                         string CompanyDescription = null,
@@ -115,7 +114,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
             int UserId,
             int tenantId,
             string Name,
-                        string CompanyName = "N/A",
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
                         string CompanyDescription = null,
@@ -754,7 +752,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
     public virtual Task<int> AddProfile(
             int UserId,
             string Name,
-                        string CompanyName = "N/A",
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
                         string CompanyDescription = null,
@@ -770,7 +767,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
                                   user_id,
                                   name,
 
-                                  company_name,
                                   company_email,
                                   company_website,
                                   company_description,
@@ -784,7 +780,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
                                   @UserId,
                                   @Name,
 
-                                  @CompanyName,
                                   @CompanyEmail,
                                   @CompanyWebsite,
                                   @CompanyDescription,
@@ -808,7 +803,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
           UserId,
           Name,
 
-                    CompanyName,
                     CompanyEmail,
                     CompanyWebsite,
                     CompanyDescription,
@@ -823,7 +817,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
             int UserId,
             int tenantId,
             string Name,
-                        string CompanyName = "N/A",
                         string CompanyEmail = null,
                         string CompanyWebsite = null,
                         string CompanyDescription = null,
@@ -844,7 +837,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
                                 SET
                                   name = @Name,
 
-                                  company_name = @CompanyName,
                                   company_email = @CompanyEmail,
                                   company_website = @CompanyWebsite,
                                   company_description = @CompanyDescription,
@@ -868,7 +860,6 @@ namespace DevCongress.Jobs.Core.Domain.Repository
           UserId,
           Name,
 
-                    CompanyName,
                     CompanyEmail,
                     CompanyWebsite,
                     CompanyDescription,

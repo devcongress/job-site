@@ -1,0 +1,91 @@
+@model DevCongress.Jobs.Core.ViewModels.Auth.TokenRegistrationViewModel
+
+@{
+    Layout = "_MainLayout";
+    ViewData["Title"] = "Register";
+}
+
+<div class="content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+
+                <form method="post" asp-route="init_token_registration">
+                    <div class="card card-login card-hidden">
+                        <div class="card-header text-center" data-background-color="rose">
+                            <h4 class="card-title">Register</h4>
+                        </div>
+                        <div class="card-content">
+
+                            @await Html.PartialAsync("_Messages")
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">mail_outline</i>
+                                </span>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Email Address <span class="text-danger">*</span></label>
+                                    <input name="Email" type="email" value="@Model.Email" class="form-control" required="required">
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">business</i>
+                                </span>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Company Name <span class="text-danger">*</span></label>
+                                    <input name="Name" type="text" value="@Model.Name" class="form-control" required="required">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">mail_outline</i>
+                                </span>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Company Email <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="CompanyEmail" value="@Model.CompanyEmail" required="required">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">mail_outline</i>
+                                </span>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Company Website</label>
+                                    <input type="text" class="form-control" name="CompanyWebsite" value="@Model.CompanyWebsite">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">mail_outline</i>
+                                </span>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Company Description <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" name="CompanyDescription" required="required">@Model.CompanyDescription</textarea>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer text-center">
+                            <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Submit</button>
+                            <br />
+                            <a asp-route="login" class="small text-success">
+                                <div class="ripple-container"></div>
+                                Already a user?
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

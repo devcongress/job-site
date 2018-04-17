@@ -101,7 +101,6 @@ CREATE TABLE public."user_profile"
   user_id integer NOT NULL,
   name text NOT NULL, 
   
-  company_name text NOT NULL DEFAULT 'N/A', 
   company_email text NULL, 
   company_website text NULL, 
   company_description text NULL, 

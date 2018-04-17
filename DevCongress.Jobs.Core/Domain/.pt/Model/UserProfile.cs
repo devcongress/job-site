@@ -12,8 +12,6 @@ namespace DevCongress.Jobs.Core.Domain.Model
         public string Name { get; set; }
 
         
-                public string CompanyName { get; set; }
-        
                 public string CompanyEmail { get; set; }
         
                 public string CompanyWebsite { get; set; }

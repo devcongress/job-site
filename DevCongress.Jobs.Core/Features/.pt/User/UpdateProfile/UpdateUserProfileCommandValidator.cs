@@ -28,10 +28,12 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
       RuleFor(request => request.Name).Length(fields => 1, fields => 50);
       RuleFor(request => request.Name).NotEmpty();
 
-            RuleFor(request => request.CompanyName).NotNull();
       
       
 
+                        
+            RuleFor(request => request.CompanyEmail).NotEmpty();
+      
                         
             RuleFor(request => request.CompanyEmail).EmailAddress();
       
@@ -42,6 +44,9 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
             RuleFor(request => request.CompanyWebsite).Length(fields => 0, fields => 60);
       
                                     
+            RuleFor(request => request.CompanyDescription).NotEmpty();
+      
+                        
             RuleFor(request => request.CompanyDescription).Length(fields => 0, fields => 500);
       
                       }

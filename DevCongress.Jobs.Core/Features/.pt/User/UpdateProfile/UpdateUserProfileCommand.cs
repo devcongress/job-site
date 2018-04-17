@@ -15,7 +15,6 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
   {
     public int UserId { get; }
     public string Name { get; }
-        public string CompanyName { get; }
         public string CompanyEmail { get; }
         public string CompanyWebsite { get; }
         public string CompanyDescription { get; }
@@ -27,7 +26,6 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
     public UpdateUserProfileCommand(
           int UserId,
           string Name,
-                    string CompanyName = "N/A",
                     string CompanyEmail = null,
                     string CompanyWebsite = null,
                     string CompanyDescription = null,
@@ -37,7 +35,6 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
     {
       this.UserId = UserId;
       this.Name = Name;
-            this.CompanyName = CompanyName;
             this.CompanyEmail = CompanyEmail;
             this.CompanyWebsite = CompanyWebsite;
             this.CompanyDescription = CompanyDescription;

@@ -128,7 +128,6 @@ namespace DevCongress.Jobs.Core.Controllers.Api
     public virtual async Task<IActionResult> EditProfile(
         [FromRoute] int Id
       , [FromForm] string Name
-        , [FromForm] string CompanyName = "N/A"
         , [FromForm] string CompanyEmail = null
         , [FromForm] string CompanyWebsite = null
         , [FromForm] string CompanyDescription = null
@@ -138,7 +137,6 @@ namespace DevCongress.Jobs.Core.Controllers.Api
       var command = new UpdateUserProfileCommand(
           UserId: Id,
           Name: Name,
-                    CompanyName : CompanyName,
                     CompanyEmail : CompanyEmail,
                     CompanyWebsite : CompanyWebsite,
                     CompanyDescription : CompanyDescription,

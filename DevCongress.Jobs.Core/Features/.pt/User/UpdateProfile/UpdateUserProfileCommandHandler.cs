@@ -61,7 +61,6 @@ namespace DevCongress.Jobs.Core.Features.User.UpdateProfile
             user.Id,
             tenantId,
             Name: command.Name,
-                        CompanyName :command.CompanyName,
                         CompanyEmail :command.CompanyEmail,
                         CompanyWebsite :command.CompanyWebsite,
                         CompanyDescription :command.CompanyDescription,

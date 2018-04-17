@@ -127,32 +127,15 @@
 
                 <div class="row">
                   <label class="col-sm-4 label-on-left">
-                    Company Name
-                    
-                    
-                  </label>
-                  <div class="col-sm-8">
-                    
-            <div class="form-group label-floating is-empty">
-              <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyName" value="@Model.User.Profile.CompanyName" >
-              <span class="help-block"></span>
-            </div>
-                  </div>
-                </div>
-
-
-                <div class="row">
-                  <label class="col-sm-4 label-on-left">
                     Company Email
-                    
+                    <span class="text-danger">*</span>
                     
                   </label>
                   <div class="col-sm-8">
                     
             <div class="form-group label-floating is-empty">
               <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyEmail" value="@Model.User.Profile.CompanyEmail" >
+              <input type="text" class="form-control" name="CompanyEmail" value="@Model.User.Profile.CompanyEmail" required="required">
               <span class="help-block"></span>
             </div>
                   </div>
@@ -179,14 +162,14 @@
                 <div class="row">
                   <label class="col-sm-4 label-on-left">
                     Company Description
-                    
+                    <span class="text-danger">*</span>
                     
                   </label>
                   <div class="col-sm-8">
                     
           <div class="form-group label-floating is-empty">
             <label class="control-label"></label>
-            <textarea class="form-control" name="CompanyDescription" >@Model.User.Profile.CompanyDescription</textarea>
+            <textarea class="form-control" name="CompanyDescription" required="required">@Model.User.Profile.CompanyDescription</textarea>
             <span class="help-block"></span>
           </div>
                   </div>

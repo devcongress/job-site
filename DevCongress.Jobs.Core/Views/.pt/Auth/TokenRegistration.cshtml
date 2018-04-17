@@ -47,32 +47,13 @@
                 </span>
                 <div class="form-group label-floating">
                   <label class="control-label">
-                    Company Name
-                    
-                  </label>
-                  
-            <div class="form-group label-floating is-empty">
-              <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyName" value="@Model.CompanyName" >
-              <span class="help-block"></span>
-            </div>
-                </div>
-              </div>
-
-
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <i class="material-icons">mail_outline</i>
-                </span>
-                <div class="form-group label-floating">
-                  <label class="control-label">
                     Company Email
-                    
+                    <span class="text-danger">*</span>
                   </label>
                   
             <div class="form-group label-floating is-empty">
               <label class="control-label"></label>
-              <input type="text" class="form-control" name="CompanyEmail" value="@Model.CompanyEmail" >
+              <input type="text" class="form-control" name="CompanyEmail" value="@Model.CompanyEmail" required="required">
               <span class="help-block"></span>
             </div>
                 </div>
@@ -105,12 +86,12 @@
                 <div class="form-group label-floating">
                   <label class="control-label">
                     Company Description
-                    
+                    <span class="text-danger">*</span>
                   </label>
                   
           <div class="form-group label-floating is-empty">
             <label class="control-label"></label>
-            <textarea class="form-control" name="CompanyDescription" >@Model.CompanyDescription</textarea>
+            <textarea class="form-control" name="CompanyDescription" required="required">@Model.CompanyDescription</textarea>
             <span class="help-block"></span>
           </div>
                 </div>
