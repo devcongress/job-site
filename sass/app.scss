@@ -1,0 +1,25 @@
+@import "components/base";
+.notification {
+    border-radius: 0;
+}
+
+.notification:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.hint {
+    font-size: small;
+}
+
+.tag {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 9px !important;
+}
+
+.index-title {
+    margin-bottom: 10px !important;
+    a {
+        color: $dark;
+    }
+}
